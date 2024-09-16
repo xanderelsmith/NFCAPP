@@ -7,22 +7,27 @@ import '../utils/screensizeutils.dart';
 class DarkExpandedButton extends StatelessWidget {
   const DarkExpandedButton({
     super.key,
+    required this.onTap,
+    required this.title,
   });
-
+  final VoidCallback onTap;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const CountrySelectionSceen()));
+        onTap();
       },
       style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.black,
-          fixedSize: Size(getScreenSize(context).width - 50, 20),
-          foregroundColor: AppColor.white),
-      child: const Text('Create Account'),
+        backgroundColor: ThemeMode.system == ThemeMode.dark
+            ? AppColor.white
+            : AppColor.brown,
+        foregroundColor: ThemeMode.system == ThemeMode.dark
+            ? AppColor.black
+            : AppColor.white,
+        fixedSize: Size(getScreenSize(context).width - 50, 20),
+      ),
+      child: Text(title),
     );
   }
 }
@@ -40,8 +45,12 @@ class LightExpandedButton extends StatelessWidget {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             fixedSize: Size(getScreenSize(context).width - 50, 20),
-            backgroundColor: AppColor.grey,
-            foregroundColor: AppColor.black),
+            backgroundColor: ThemeMode.system != ThemeMode.light
+                ? AppColor.black
+                : AppColor.grey,
+            foregroundColor: ThemeMode.system != ThemeMode.light
+                ? AppColor.grey
+                : AppColor.brown),
         onPressed: () {
           onTap();
         },

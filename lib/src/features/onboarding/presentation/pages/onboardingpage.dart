@@ -30,7 +30,16 @@ class OnboardingPage extends StatelessWidget {
             ),
             Column(
               children: [
-                const DarkExpandedButton(),
+                DarkExpandedButton(
+                  title: 'Create account',
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const CountrySelectionSceen()));
+                  },
+                ),
                 LightExpandedButton(
                   onTap: () {},
                   title: 'Log in',

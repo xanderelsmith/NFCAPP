@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../commonwidget/expandedbuttons.dart';
+import '../../../../../commonwidget/specialtextfield.dart';
 import '../../../../../style/textstyles.dart';
+import '../../../authentication/presentation/pages/loginscreen.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({
@@ -61,18 +63,24 @@ class OtpScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: List.generate(
                             4,
-                            (index) => Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: List.generate(
-                                3,
-                                (newindex) {
-                                  int i = ((index * 3) + newindex) + 1;
-                                  return Text(
-                                    '$i',
-                                    style: AppTextStyles.mediumbold,
-                                  );
-                                },
+                            (index) => Expanded(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: List.generate(
+                                  3,
+                                  (newindex) {
+                                    int i = ((index * 3) + newindex) + 1;
+                                    return Expanded(
+                                      child: Text(
+                                        '${i == 10 ? ' ' : i == 11 ? 0 : i}',
+                                        textAlign: TextAlign.center,
+                                        style: AppTextStyles.mediumbold,
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           )),
@@ -85,7 +93,7 @@ class OtpScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const OtpScreen()));
+                            builder: (context) => const LoginScreen()));
                   },
                   title: 'Verify Account',
                 ),

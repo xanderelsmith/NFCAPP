@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:nfcapp/style/color.dart';
 
+import '../utils/screensizeutils.dart';
+
 class AppThemes {
   static ThemeData darkTheme = ThemeData.dark().copyWith(
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+          backgroundColor: AppColor.black, foregroundColor: AppColor.white),
+    ),
     colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff626262)),
   );
   static ThemeData lightTheme = ThemeData.light().copyWith(
+      scaffoldBackgroundColor: const Color(0xffffffff),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+            backgroundColor: AppColor.grey, foregroundColor: AppColor.black),
+      ),
       colorScheme: ColorScheme.fromSeed(
         seedColor: const Color(0xff626262),
       ),
@@ -23,6 +34,7 @@ class AppThemes {
               ))),
       appBarTheme: AppBarTheme(
         titleSpacing: 0,
+        backgroundColor: const Color(0xffffffff),
         titleTextStyle: TextStyle(color: AppColor.blue, fontSize: 20),
         iconTheme: IconThemeData(color: AppColor.blue),
       ));
