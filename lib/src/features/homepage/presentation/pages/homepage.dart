@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
-          enableFeedback: false,
+          currentIndex: currentIndex,
+          onTap: (value) {
+            setState(() {
+              currentIndex = value;
+            });
+          },
+          enableFeedback: true,
           items: BottomNavPages.values
               .map((e) => BottomNavigationBarItem(
                     icon: Icon(e.icon),
