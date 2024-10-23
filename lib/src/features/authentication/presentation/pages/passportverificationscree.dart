@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nfcapp/commonwidget/expandedbuttons.dart';
+import 'package:nfcapp/extension/textstyleextensions.dart';
 import 'package:nfcapp/src/features/authentication/presentation/pages/passportphotoscreen.dart';
 import 'package:nfcapp/src/features/onboarding/presentation/pages/verifyemailscreen.dart';
 import 'package:nfcapp/utils/screensizeutils.dart';
@@ -17,6 +18,10 @@ class PassportVerification extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const Icon(
+          Icons.arrow_back_ios_new_rounded,
+          size: 15,
+        ),
         title: const Text('Back'),
       ),
       body: Padding(
@@ -33,11 +38,11 @@ class PassportVerification extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.0),
                     child: Text(
                       'Get your Passport ready',
-                      style: AppTextStyles.miniBold,
+                      style: AppTextStyles.mini.miniBold,
                     ),
                   ),
                   const Text(

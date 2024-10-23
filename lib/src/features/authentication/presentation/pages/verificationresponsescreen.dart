@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nfcapp/commonwidget/expandedbuttons.dart';
+import 'package:nfcapp/extension/textstyleextensions.dart';
 
 import '../../../../../style/textstyles.dart';
 import '../../../../../utils/screensizeutils.dart';
@@ -16,6 +17,15 @@ class VerificationResponseScreen extends StatelessWidget {
     VerificationResponse verificationResponse = VerificationResponse.successful;
     return Scaffold(
       appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 15,
+          ),
+        ),
         title: const Text('Back'),
       ),
       body: SizedBox(
@@ -53,12 +63,12 @@ class VerificationResponseScreen extends StatelessWidget {
                     ),
                     child: Text(
                       verificationResponse.title,
-                      style: AppTextStyles.miniBold,
+                      style: AppTextStyles.mini.miniBold,
                     ),
                   ),
                   Text(
                     verificationResponse.message,
-                    style: AppTextStyles.tinygrey.copyWith(),
+                    style: AppTextStyles.tinygrey,
                     textAlign: TextAlign.center,
                   ),
                 ],

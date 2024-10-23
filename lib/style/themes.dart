@@ -18,8 +18,7 @@ class AppThemes {
             backgroundColor: AppColor.grey, foregroundColor: AppColor.black),
       ),
       colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color(0xff626262),
-      ),
+          seedColor: const Color(0xff626262), primary: const Color(0xff0D60D8)),
       dropdownMenuTheme: DropdownMenuThemeData(
           menuStyle: MenuStyle(
               backgroundColor:
@@ -32,10 +31,13 @@ class AppThemes {
                     side: const BorderSide(width: 3, color: Colors.red),
                     borderRadius: BorderRadius.circular(20)),
               ))),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         titleSpacing: 0,
-        backgroundColor: const Color(0xffffffff),
-        titleTextStyle: TextStyle(color: AppColor.blue, fontSize: 20),
+        backgroundColor: Color(0xffffffff),
+        titleTextStyle: TextStyle(
+          color: AppColor.blue,
+          fontSize: 12,
+        ),
         iconTheme: IconThemeData(color: AppColor.blue),
       ));
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nfcapp/extension/textstyleextensions.dart';
 import 'package:nfcapp/src/features/authentication/presentation/pages/identityverification.dart';
 
 import '../../../../../commonwidget/expandedbuttons.dart';
@@ -14,34 +15,38 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 15,
+          ),
           title: const Text('Back'),
         ),
         body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(children: [
-              const Expanded(
+              Expanded(
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       vertical: 8.0,
                     ),
                     child: Text(
                       'Log In',
-                      style: AppTextStyles.miniBold,
+                      style: AppTextStyles.mini.miniBold,
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Email Address',
                   ),
-                  SpecialTextfield(
+                  const SpecialTextfield(
                     innerHint: 'Enter Email Address',
                   ),
-                  Text(
+                  const Text(
                     'Login Password',
                   ),
-                  SpecialTextfield(),
+                  const SpecialTextfield(),
                 ],
               )),
               Padding(
@@ -52,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                IdentityVerificationScreen()));
+                                const IdentityVerificationScreen()));
                   },
                   title: 'Continue',
                 ),

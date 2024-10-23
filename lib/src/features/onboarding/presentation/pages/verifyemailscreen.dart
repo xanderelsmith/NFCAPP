@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nfcapp/extension/textstyleextensions.dart';
 import 'package:nfcapp/src/features/onboarding/presentation/pages/otpscreen.dart';
 
 import '../../../../../commonwidget/expandedbuttons.dart';
@@ -15,6 +16,10 @@ class VerifyEmailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 15,
+          ),
           title: const Text('Back'),
         ),
         body: Padding(
@@ -24,9 +29,9 @@ class VerifyEmailScreen extends StatelessWidget {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                    const Text(
+                    Text(
                       'Verify your Email',
-                      style: AppTextStyles.miniBold,
+                      style: AppTextStyles.mini.miniBold,
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 8.0),

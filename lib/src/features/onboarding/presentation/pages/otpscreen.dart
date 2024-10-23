@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nfcapp/extension/textstyleextensions.dart';
 
 import '../../../../../commonwidget/expandedbuttons.dart';
 import '../../../../../commonwidget/specialtextfield.dart';
@@ -14,6 +15,10 @@ class OtpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 15,
+          ),
           title: const Text('Back'),
         ),
         body: Padding(
@@ -23,12 +28,12 @@ class OtpScreen extends StatelessWidget {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                    const Expanded(
+                    Expanded(
                       child: Align(
                         alignment: Alignment(0, 0.7),
                         child: Text(
                           'Enter your Pin',
-                          style: AppTextStyles.miniBold,
+                          style: AppTextStyles.mini.miniBold,
                         ),
                       ),
                     ),

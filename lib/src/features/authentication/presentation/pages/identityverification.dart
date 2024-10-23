@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nfcapp/extension/textstyleextensions.dart';
 
 import '../../../../../commonwidget/expandedbuttons.dart';
 import '../../../../../commonwidget/specialtextfield.dart';
@@ -22,12 +23,16 @@ class _IdentityVerificationScreenState
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 15,
+          ),
           title: const Text('Back'),
         ),
         body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(children: [
-              const Expanded(
+              Expanded(
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -37,7 +42,7 @@ class _IdentityVerificationScreenState
                     ),
                     child: Text(
                       'Identity verification',
-                      style: AppTextStyles.miniBold,
+                      style: AppTextStyles.mini.miniBold,
                     ),
                   ),
                   Text(

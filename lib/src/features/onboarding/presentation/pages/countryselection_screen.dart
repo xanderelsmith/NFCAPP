@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nfcapp/extension/textstyleextensions.dart';
 import 'package:nfcapp/src/features/onboarding/presentation/pages/createaccountsceen.dart';
 import 'package:nfcapp/style/textstyles.dart';
 
@@ -20,6 +21,15 @@ class _CountrySelectionSceenState extends State<CountrySelectionSceen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 15,
+          ),
+        ),
         title: const Text('Back'),
       ),
       body: Padding(
@@ -30,9 +40,9 @@ class _CountrySelectionSceenState extends State<CountrySelectionSceen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'What country do you live in?',
-                    style: AppTextStyles.miniBold,
+                    style: AppTextStyles.mini.miniBold,
                   ),
                   const SizedBox(
                     height: 20,

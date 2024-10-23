@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nfcapp/commonwidget/expandedbuttons.dart';
 import 'package:nfcapp/commonwidget/specialtextfield.dart';
+import 'package:nfcapp/extension/textstyleextensions.dart';
+import 'package:nfcapp/src/features/authentication/presentation/pages/passportverificationscree.dart';
 import 'package:nfcapp/src/features/onboarding/presentation/pages/verifyemailscreen.dart';
 
 import '../../../../../style/textstyles.dart';
@@ -12,38 +14,42 @@ class CreateAccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 15,
+          ),
           title: const Text('Back'),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(
             children: [
-              const Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Create Account',
-                      style: AppTextStyles.miniBold,
+                      style: AppTextStyles.mini.miniBold,
                     ),
-                    Text(
+                    const Text(
                       'Email Address',
                     ),
-                    SpecialTextfield(
+                    const SpecialTextfield(
                       innerHint: 'Enter Email Address',
                     ),
-                    Text(
+                    const Text(
                       'Login Password',
                     ),
-                    SpecialTextfield(),
-                    Text(
+                    const SpecialTextfield(),
+                    const Text(
                       'Password doesn\'t meet requirements',
                     ),
-                    Text('8-32 characters long'),
-                    Text('1 lowercase character'),
-                    Text('1 Uppercase character'),
-                    Text('1 number'),
-                    Text('1 special character e.g !@#\$'),
+                    const Text('8-32 characters long'),
+                    const Text('1 lowercase character'),
+                    const Text('1 Uppercase character'),
+                    const Text('1 number'),
+                    const Text('1 special character e.g !@#\$'),
                   ],
                 ),
               ),
