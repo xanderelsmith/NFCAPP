@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nfcapp/style/textstyles.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/themeprovider.dart';
+import '../style/color.dart';
 
 class SpecialTextfield extends StatelessWidget {
   final String? textfieldname;
@@ -9,10 +13,10 @@ class SpecialTextfield extends StatelessWidget {
   final Widget? suffixwidget;
   final Function? onChanged;
   final TextCapitalization? textCapitalization;
-
+  final String? Function(String?)? validator;
   final Icon? prefixIcon;
   const SpecialTextfield({
-    Key? key,
+    super.key,
     this.maxlines,
     this.controller,
     this.ishidden,
@@ -27,7 +31,8 @@ class SpecialTextfield extends StatelessWidget {
     this.prefixIcon,
     this.border,
     this.contentPadding,
-  }) : super(key: key);
+    this.validator,
+  });
   final bool? ishidden;
   final bool? enableSuggestion;
   final TextEditingController? controller;
@@ -38,7 +43,8 @@ class SpecialTextfield extends StatelessWidget {
   final EdgeInsets? contentPadding;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: validator,
       onChanged: (value) {
         if (onChanged != null) {
           onChanged!(value);
@@ -47,7 +53,7 @@ class SpecialTextfield extends StatelessWidget {
       controller: controller,
       keyboardType: textInputtype,
       cursorHeight: 20,
-      style: AppTextStyles.small,
+      style: AppTextStyles.small15,
       obscureText: ishidden ?? false,
       maxLines: isMultiline == false || maxlines == null ? 1 : maxlines,
       textCapitalization: textCapitalization ?? TextCapitalization.none,
@@ -62,7 +68,21 @@ class SpecialTextfield extends StatelessWidget {
         contentPadding:
             contentPadding ?? const EdgeInsets.symmetric(horizontal: 10),
         filled: true,
+        focusedBorder: border ??
+            OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                    color: Provider.of<ThemeProvider>(context).isDarkMode
+                        ? AppColors.white
+                        : AppColors.black)),
         suffixIcon: suffixwidget,
+        enabledBorder: border ??
+            OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                    color: Provider.of<ThemeProvider>(context).isDarkMode
+                        ? AppColors.white
+                        : AppColors.black)),
         border: border ??
             OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nfcapp/provider/themeprovider.dart';
 import 'package:nfcapp/src/features/homepage/presentation/widgets/currencyamountpreviewwidget.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../style/color.dart';
 import '../../../../../style/textstyles.dart';
@@ -14,6 +16,7 @@ class CardDetailsDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
     return Card(
       margin: const EdgeInsets.only(top: 45),
       color: Colors.transparent,
@@ -43,13 +46,14 @@ class CardDetailsDashboard extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(
-                      color: AppColor.blue,
+                      color: AppColors.blue,
                       width: 2,
                     )),
                 child: Row(
                   children: [
                     Image.asset(
                       'images/naira.png',
+                      color: isDarkMode ? AppColors.white : AppColors.black,
                       height: 12,
                     ),
                     Expanded(
@@ -57,6 +61,7 @@ class CardDetailsDashboard extends StatelessWidget {
                         underline: const SizedBox(),
                         icon: Image.asset(
                           'images/arrowdown.png',
+                          color: isDarkMode ? AppColors.white : AppColors.black,
                         ),
                         value: Currency.dollar,
                         items: Currency.values
@@ -65,7 +70,7 @@ class CardDetailsDashboard extends StatelessWidget {
                                 value: e,
                                 child: Text(
                                   e.name,
-                                  style: AppTextStyles.tiny.copyWith(
+                                  style: AppTextStyles.tiny10.copyWith(
                                     fontSize: 8,
                                   ),
                                 ),
@@ -87,22 +92,32 @@ class CardDetailsDashboard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: List.generate(
                   HomeActionKeys.values.length,
-                  (index) => Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                          radius: 25,
-                          backgroundColor: AppColor.circleAvatarColor,
-                          child: Image.asset(
-                            HomeActionKeys.values[index].imagesrc,
-                            height: 27,
-                            color: AppColor.iconColorgrey,
-                          )),
-                      Text(
-                        HomeActionKeys.values[index].text,
-                        style: AppTextStyles.minute,
-                      )
-                    ],
+                  (index) => GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => getHomeActionScreen(
+                                HomeActionKeys.values[index]),
+                          ));
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                            radius: 25,
+                            backgroundColor: AppColors.circleAvatarColor,
+                            child: Image.asset(
+                              HomeActionKeys.values[index].imagesrc,
+                              height: 27,
+                              color: AppColors.iconColorgrey,
+                            )),
+                        Text(
+                          HomeActionKeys.values[index].text,
+                          style: AppTextStyles.minute8,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               )

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nfcapp/extension/textstyleextensions.dart';
+import 'package:nfcapp/provider/themeprovider.dart';
+import 'package:nfcapp/style/color.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../commonwidget/expandedbuttons.dart';
 import '../../../../../commonwidget/specialtextfield.dart';
@@ -23,16 +26,25 @@ class _IdentityVerificationScreenState
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            size: 15,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              size: 15,
+            ),
           ),
-          title: const Text('Back'),
+          title: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back')),
         ),
         body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(children: [
-              Expanded(
+              const Expanded(
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -42,7 +54,7 @@ class _IdentityVerificationScreenState
                     ),
                     child: Text(
                       'Identity verification',
-                      style: AppTextStyles.mini.miniBold,
+                      style: AppTextStyles.mini,
                     ),
                   ),
                   Text(
@@ -100,6 +112,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return BottomSheet(
+      backgroundColor: AppColors.bottomSheetColor,
       onClosing: () {},
       builder: (context) {
         return Padding(
@@ -109,22 +122,35 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('ID type'),
+                  Text(
+                    'ID type',
+                    style: AppTextStyles.small14.w600
+                        .copyWith(color: AppColors.black),
+                  ),
                   IconButton(
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: const Icon(Icons.close))
+                      icon: const Icon(
+                        Icons.close,
+                        color: AppColors.black,
+                      ))
                 ],
               ),
-              const Card(
+              Card(
                 color: Color(0xff82FC57),
                 child: SizedBox(
                     height: 20,
                     width: 120,
-                    child: Center(child: Text('Recommended'))),
+                    child: Center(
+                        child: Text(
+                      'Recommended',
+                      style: AppTextStyles.minute8.w500
+                          .copyWith(color: AppColors.black),
+                    ))),
               ),
               ...List.generate(
                 VerificationDoc.values.length,
@@ -145,7 +171,11 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(VerificationDoc.values[index].title),
+                        Text(
+                          VerificationDoc.values[index].title,
+                          style: AppTextStyles.tiny10.w400
+                              .copyWith(color: AppColors.black),
+                        ),
                         verificationDoc == VerificationDoc.values[index]
                             ? const Icon(
                                 Icons.check_circle_sharp,
@@ -157,10 +187,10 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                   ),
                 ),
               ),
-              const Center(
+              Center(
                 child: Text(
                   'Your information is only used for identity verification',
-                  style: AppTextStyles.tiny,
+                  style: AppTextStyles.tiny10,
                   textAlign: TextAlign.center,
                 ),
               ),

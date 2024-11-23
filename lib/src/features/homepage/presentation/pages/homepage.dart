@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nfcapp/extension/textstyleextensions.dart';
+import 'package:nfcapp/src/features/homepage/presentation/pages/sendmoneyscreen.dart';
 import 'package:nfcapp/src/features/homepage/presentation/pages/sublevels/accountpage.dart';
 import 'package:nfcapp/src/features/homepage/presentation/pages/sublevels/homedashboard.dart';
 import 'package:nfcapp/src/features/homepage/presentation/widgets/customnavigationbar.dart';
 import 'package:nfcapp/style/color.dart';
-import 'package:nfcapp/style/textstyles.dart';
-
-import '../../../../../utils/screensizeutils.dart';
-import '../widgets/carddetailsdashboard.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -22,7 +18,7 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CustomBottomNavigationBar(
-          selectedColor: Theme.of(context).colorScheme.primary,
+          selectedColor: AppColors.blue,
           currentIndex: bottomNavPage.index,
           onTap: (index) {
             setState(() {
@@ -35,8 +31,8 @@ class _HomepageState extends State<Homepage> {
                     icon: Image.asset(
                       e.icon,
                       color: e == bottomNavPage
-                          ? Theme.of(context).colorScheme.primary
-                          : AppColor.iconColorgrey,
+                          ? AppColors.blue
+                          : AppColors.iconColorgrey,
                     ),
                     label: e.name,
                   ))
@@ -44,8 +40,6 @@ class _HomepageState extends State<Homepage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
-            left: 20.0,
-            right: 20,
             top: 10,
           ),
           child: getHomepageCurrentScreen(bottomNavPage),
@@ -70,8 +64,13 @@ Widget getHomepageCurrentScreen(BottomNavPages bottomNavPages) {
     case BottomNavPages.home:
       return const HomeDashboard();
     case BottomNavPages.send:
-      return const Column();
+      return const SendMoneyScreen();
     default:
       return const AccountPage();
   }
+}
+
+String formatNumberWithCommas(int number) {
+  return number.toString().replaceAllMapped(
+      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
 }

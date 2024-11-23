@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nfcapp/extension/textstyleextensions.dart';
+import 'package:nfcapp/provider/themeprovider.dart';
 import 'package:nfcapp/style/color.dart';
 import 'package:nfcapp/style/textstyles.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../../utils/screensizeutils.dart';
 import '../profilepage.dart';
@@ -20,18 +22,22 @@ class _AccountPageState extends State<AccountPage> {
       AccountVerificationState.verified;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 20.0,
+        right: 20,
+      ),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Account',
-            style: AppTextStyles.medium.w500,
+            style: AppTextStyles.medium20.w500,
           ),
           Center(
             child: Card(
                 margin: const EdgeInsets.only(top: 24),
-                color: Colors.transparent,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -57,19 +63,24 @@ class _AccountPageState extends State<AccountPage> {
                         minLeadingWidth: 0,
                         leading: Icon(
                           Icons.person_2,
-                          color: AppColor.blue,
+                          color: AppColors.blue,
                           size: 20,
                         ),
                         title: Text(
                           'Your Profile',
-                          style: AppTextStyles.tiny,
+                          style: AppTextStyles.tiny10.copyWith(
+                            color:
+                                Provider.of<ThemeProvider>(context).isDarkMode
+                                    ? AppColors.white
+                                    : AppColors.black,
+                          ),
                         ),
                       ),
                       ListTile(
                         minLeadingWidth: 0,
                         leading: const Icon(
                           Icons.person_2,
-                          color: AppColor.blue,
+                          color: AppColors.blue,
                           size: 20,
                         ),
                         trailing: TextButton(
@@ -95,29 +106,34 @@ class _AccountPageState extends State<AccountPage> {
                           onPressed: () {},
                           child: Text(
                             accountVerificationState.message,
-                            style: AppTextStyles.tiny,
+                            style: AppTextStyles.tiny10,
                           ),
                         ),
-                        title: const Text(
+                        title: Text(
                           'Account Verification',
-                          style: AppTextStyles.tiny,
+                          style: AppTextStyles.tiny10.copyWith(
+                            color:
+                                Provider.of<ThemeProvider>(context).isDarkMode
+                                    ? AppColors.white
+                                    : AppColors.black,
+                          ),
                         ),
                       ),
                       ListTile(
                         minLeadingWidth: 0,
                         leading: const Icon(
                           Icons.tune_rounded,
-                          color: AppColor.blue,
+                          color: AppColors.blue,
                           size: 20,
                         ),
                         trailing: Switch(
                           splashRadius: 12,
-                          value: accountVerificationState ==
-                              AccountVerificationState.verified,
+                          value: themeProvider.isDarkMode,
                           trackColor: WidgetStateColor.resolveWith(
-                              (states) => AppColor.black),
+                              (states) => AppColors.black),
                           onChanged: (value) {
                             setState(() {
+                              themeProvider.toggleTheme();
                               accountVerificationState =
                                   accountVerificationState ==
                                           AccountVerificationState.verified
@@ -126,9 +142,14 @@ class _AccountPageState extends State<AccountPage> {
                             });
                           },
                         ),
-                        title: const Text(
+                        title: Text(
                           'Enable Dark Mode',
-                          style: AppTextStyles.tiny,
+                          style: AppTextStyles.tiny10.copyWith(
+                            color:
+                                Provider.of<ThemeProvider>(context).isDarkMode
+                                    ? AppColors.white
+                                    : AppColors.black,
+                          ),
                         ),
                       ),
                     ],
@@ -142,7 +163,7 @@ class _AccountPageState extends State<AccountPage> {
 }
 
 enum AccountVerificationState {
-  notverified('Needs Attention', AppColor.red),
+  notverified('Needs Attention', AppColors.red),
   verified('VERIFIED', Color(0xff4ED775));
 
   const AccountVerificationState(this.message, this.color);

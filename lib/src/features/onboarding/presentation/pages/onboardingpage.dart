@@ -3,8 +3,10 @@ import 'package:nfcapp/src/features/onboarding/presentation/pages/countryselecti
 import 'package:nfcapp/style/color.dart';
 import 'package:nfcapp/style/textstyles.dart';
 import 'package:nfcapp/utils/screensizeutils.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../commonwidget/expandedbuttons.dart';
+import '../../../../../provider/themeprovider.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -31,6 +33,17 @@ class OnboardingPage extends StatelessWidget {
             Column(
               children: [
                 DarkExpandedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor:
+                        Provider.of<ThemeProvider>(context).isDarkMode
+                            ? AppColors.black
+                            : AppColors.white,
+                    fixedSize: Size(getScreenSize(context).width - 50, 20),
+                    backgroundColor:
+                        Provider.of<ThemeProvider>(context).isDarkMode
+                            ? AppColors.white
+                            : AppColors.black,
+                  ),
                   title: 'Create account',
                   onTap: () {
                     Navigator.push(
@@ -41,6 +54,17 @@ class OnboardingPage extends StatelessWidget {
                   },
                 ),
                 LightExpandedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor:
+                        Provider.of<ThemeProvider>(context).isDarkMode
+                            ? AppColors.white
+                            : AppColors.black,
+                    fixedSize: Size(getScreenSize(context).width - 50, 20),
+                    backgroundColor:
+                        Provider.of<ThemeProvider>(context).isDarkMode
+                            ? AppColors.brown
+                            : AppColors.grey,
+                  ),
                   onTap: () {},
                   title: 'Log in',
                 ),

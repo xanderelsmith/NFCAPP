@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nfcapp/extension/textstyleextensions.dart';
+import 'package:nfcapp/provider/themeprovider.dart';
+import 'package:nfcapp/style/color.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../style/textstyles.dart';
 import '../../../../../utils/screensizeutils.dart';
@@ -11,6 +14,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
@@ -32,23 +36,29 @@ class ProfilePage extends StatelessWidget {
             ListTile(
               title: Text(
                 'Afolabi Philemon',
-                style: AppTextStyles.medium.w500,
+                style: AppTextStyles.medium20.w500.copyWith(
+                  color: isDark ? AppColors.white : AppColors.black,
+                ),
               ),
-              subtitle: const Text('adphill128@gmail.com'),
+              subtitle: Text('adphill128@gmail.com',
+                  style: TextStyle(
+                    color: isDark ? AppColors.white : AppColors.black,
+                  )),
               trailing: const CircleAvatar(),
               minLeadingWidth: 0,
               contentPadding: EdgeInsets.zero,
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(top: 20.0),
               child: Text(
                 'PERSONAL DETAILS',
-                style: AppTextStyles.tiny,
+                style: AppTextStyles.tiny10.copyWith(
+                  color: isDark ? AppColors.white : AppColors.black,
+                ),
               ),
             ),
             Card(
                 margin: const EdgeInsets.only(top: 5),
-                color: Colors.transparent,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -65,30 +75,44 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       ListTile(
                         onTap: () {},
-                        trailing: const Text('Philemon'),
+                        trailing: Text('Philemon',
+                            style: TextStyle(
+                              color: isDark ? AppColors.white : AppColors.black,
+                            )),
                         minLeadingWidth: 0,
-                        title: const Text(
+                        title: Text(
                           'First Name',
-                          style: AppTextStyles.tiny,
+                          style: AppTextStyles.tiny10.copyWith(
+                            color: isDark ? AppColors.white : AppColors.black,
+                          ),
                         ),
                       ),
-                      const ListTile(
+                      ListTile(
                         minLeadingWidth: 0,
-                        trailing: Text('Afolabi'),
+                        trailing: Text('Afolabi',
+                            style: TextStyle(
+                              color: isDark ? AppColors.white : AppColors.black,
+                            )),
                         title: Text(
                           'Last Name',
-                          style: AppTextStyles.tiny,
+                          style: AppTextStyles.tiny10.copyWith(
+                            color: isDark ? AppColors.white : AppColors.black,
+                          ),
                         ),
                       ),
-                      const ListTile(
+                      ListTile(
                         minLeadingWidth: 0,
                         trailing: Text(
                           '9017978394',
-                          style: AppTextStyles.tiny,
+                          style: AppTextStyles.tiny10.copyWith(
+                            color: isDark ? AppColors.white : AppColors.black,
+                          ),
                         ),
                         title: Text(
                           'Phone Number',
-                          style: AppTextStyles.tiny,
+                          style: AppTextStyles.tiny10.copyWith(
+                            color: isDark ? AppColors.white : AppColors.black,
+                          ),
                         ),
                       ),
                     ],

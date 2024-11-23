@@ -31,7 +31,7 @@ class CurrencyAmountPreviewWidget extends StatelessWidget {
             child: Icon(
               Icons.visibility_off_outlined,
               size: 20,
-              color: AppColor.blue,
+              color: AppColors.blue,
             ),
           ),
         ],

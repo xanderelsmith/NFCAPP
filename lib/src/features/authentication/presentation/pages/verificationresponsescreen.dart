@@ -41,7 +41,7 @@ class VerificationResponseScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 30.0),
                 child: Text(
                   'Identity verification',
-                  style: AppTextStyles.medium.copyWith(
+                  style: AppTextStyles.medium20.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -63,12 +63,12 @@ class VerificationResponseScreen extends StatelessWidget {
                     ),
                     child: Text(
                       verificationResponse.title,
-                      style: AppTextStyles.mini.miniBold,
+                      style: AppTextStyles.mini,
                     ),
                   ),
                   Text(
                     verificationResponse.message,
-                    style: AppTextStyles.tinygrey,
+                    style: AppTextStyles.tinygrey12,
                     textAlign: TextAlign.center,
                   ),
                 ],

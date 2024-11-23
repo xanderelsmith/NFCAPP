@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nfcapp/provider/themeprovider.dart';
 import 'package:nfcapp/src/features/onboarding/presentation/pages/countryselection_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../style/color.dart';
 import '../utils/screensizeutils.dart';
@@ -9,24 +11,27 @@ class DarkExpandedButton extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.title,
+    this.style,
   });
   final VoidCallback onTap;
   final String title;
+  final ButtonStyle? style;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
         onTap();
       },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: ThemeMode.system == ThemeMode.dark
-            ? AppColor.white
-            : AppColor.brown,
-        foregroundColor: ThemeMode.system == ThemeMode.dark
-            ? AppColor.black
-            : AppColor.white,
-        fixedSize: Size(getScreenSize(context).width - 50, 20),
-      ),
+      style: style ??
+          ElevatedButton.styleFrom(
+            backgroundColor: Provider.of<ThemeProvider>(context).isDarkMode
+                ? AppColors.white
+                : AppColors.brown,
+            foregroundColor: Provider.of<ThemeProvider>(context).isDarkMode
+                ? AppColors.black
+                : AppColors.white,
+            fixedSize: Size(getScreenSize(context).width - 50, 20),
+          ),
       child: Text(title),
     );
   }
@@ -37,20 +42,23 @@ class LightExpandedButton extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.title,
+    this.style,
   });
   final VoidCallback onTap;
   final String title;
+  final ButtonStyle? style;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            fixedSize: Size(getScreenSize(context).width - 50, 20),
-            backgroundColor: ThemeMode.system != ThemeMode.light
-                ? AppColor.black
-                : AppColor.grey,
-            foregroundColor: ThemeMode.system != ThemeMode.light
-                ? AppColor.grey
-                : AppColor.brown),
+        style: style ??
+            ElevatedButton.styleFrom(
+                fixedSize: Size(getScreenSize(context).width - 50, 20),
+                backgroundColor: Provider.of<ThemeProvider>(context).isDarkMode
+                    ? AppColors.white
+                    : AppColors.black,
+                foregroundColor: Provider.of<ThemeProvider>(context).isDarkMode
+                    ? AppColors.black
+                    : AppColors.white),
         onPressed: () {
           onTap();
         },
